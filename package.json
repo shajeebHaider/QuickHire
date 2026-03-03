@@ -1,5 +1,5 @@
 {
-  "name": "job-portal",
+  "name": "quickhire",
   "private": true,
   "scripts": {
     "build": "turbo run build",
