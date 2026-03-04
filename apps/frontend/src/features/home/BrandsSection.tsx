@@ -14,7 +14,7 @@ const brands = [
 
 const BrandsSection = () => {
   return (
-    <div className="pr-30.5 pl-31 py-12">
+    <div className="pr-30.5 pl-31 py-12 max-w-360 mx-auto">
       <p className="text-lg font-normal text-black opacity-50 mb-8">Companies we helped to grow</p>
       <div className="flex items-center justify-between ">
         {brands.map(brand => (

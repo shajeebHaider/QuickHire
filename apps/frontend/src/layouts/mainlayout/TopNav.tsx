@@ -2,7 +2,7 @@ import logo from '../../assets/logo/Frame 3.png';
 
 const TopNav = () => {
   return (
-    <div className="px-31 py-6 w-full h-19.5 flex items-center justify-between bg-lights-gray ml-auto mr-auto">
+    <div className="px-31 py-6 w-full h-19.5 flex items-center justify-between bg-lights-gray max-w-360 mx-auto">
       <div className="flex items-center gap-12 justify-center">
         <img src={logo} alt="QuickHire Logo" className="w-8 h-8 -mr-10" />
         <a href="/">

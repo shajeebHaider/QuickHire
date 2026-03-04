@@ -7,7 +7,7 @@ import driblbleIcon from '../../assets/icons/dribbble.png';
 
 const Footer = () => {
   return (
-    <div className="bg-black h-124.25 px-31 pt-16 w-full">
+    <div className="bg-black h-124.25 px-31 pt-16 w-full max-w-360 mx-auto">
       <div className="flex justify-between w-full ml-auto mr-auto">
         <div className="flex flex-col gap-8 w-94 h-36.5">
           <div className="flex gap-3">

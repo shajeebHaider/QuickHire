@@ -5,7 +5,7 @@ import SearchJob from '../../components/home/SearchJob';
 
 const HeroSection = () => {
   return (
-    <section className="relative h-198.5 overflow-hidden bg-lights-gray">
+    <section className="relative h-198.5 overflow-hidden bg-lights-gray max-w-360 mx-auto">
       <img
         src={backgroundPattern}
         alt="Background Pattern"
