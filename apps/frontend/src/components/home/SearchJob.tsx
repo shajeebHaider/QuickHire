@@ -51,6 +51,9 @@ const SearchJob = () => {
           Search my job
         </button>
       </div>
+      <p className="text-base font-normal leading-[160%] text-black mt-4">
+        Popular : <span className="font-medium"> UI Designer, UX Researcher, Android, Admin</span>
+      </p>
     </div>
   );
 };
