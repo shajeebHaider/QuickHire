@@ -9,6 +9,7 @@ import designer from '../../assets/logo/designer.png';
 import dropbox from '../../assets/logo/dropbox.png';
 import twitter from '../../assets/logo/twitter.png';
 import brand from '../../assets/logo/brand-strategist.png';
+import ArrowIcon from '../../assets/icons/ArrowIcon';
 
 type Category = {
   variant: 'error' | 'primary' | 'secondary' | 'success' | 'warning';
@@ -35,8 +36,8 @@ const jobs: Array<{
     description: 'Develop and maintain web applications using modern technologies.',
     type: 'Full-time',
     categories: [
-      { variant: 'primary', name: 'Technology' },
-      { variant: 'success', name: 'Engineering' }
+      { variant: 'primary', name: 'Design' },
+      { variant: 'success', name: 'Tech' }
     ],
     link: '#'
   },
@@ -98,7 +99,7 @@ const jobs: Array<{
   },
   {
     logo: product,
-    title: 'Engineering Manager',
+    title: ' Manager',
     company: 'FinancePros',
     location: 'Boston, MA',
     description: 'Analyze financial data and prepare reports for stakeholders.',
@@ -120,9 +121,9 @@ const jobs: Array<{
 
 const FeaturedJob = () => {
   return (
-    <div className="px-31 py-18 flex flex-col gap-8 max-w-360 mx-auto">
+    <div className="px-31 py-18 flex flex-col gap-8 max-w-360 mx-auto max-lg:px-6 max-sm:px-4 max-sm:items-center">
       <SectionHeader title1="Featured" title2="jobs" linkText="Show all jobs" linkHref="#" />
-      <div className="grid grid-cols-4 gap-8 w-full">
+      <div className="grid grid-cols-4 gap-8 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1">
         {jobs.map((job, index) => (
           <FeaturedJobCard
             key={index}
@@ -136,6 +137,12 @@ const FeaturedJob = () => {
             jobType={job.type}
           />
         ))}
+      </div>
+      <div className="hidden max-sm:flex">
+        <a href="#" className="text-primary font-semibold text-base flex items-center gap-4 ">
+          <p>Show all jobs</p>
+          <ArrowIcon />
+        </a>
       </div>
     </div>
   );

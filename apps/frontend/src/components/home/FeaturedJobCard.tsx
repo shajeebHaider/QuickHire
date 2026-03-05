@@ -27,8 +27,8 @@ const FeaturedJobCard = ({
   link
 }: FeaturedJobCardProps) => {
   return (
-    <div className="max-w-68.5 max-h-70.75 border border-neutrals-20 p-8">
-      <div className=" flex justify-between items-start text-primary">
+    <div className="max-w-71 max-h-70.75 border border-neutrals-20 p-8">
+      <div className="flex justify-between items-start text-primary">
         <div className="w-12 h-12">
           <img src={logo} alt="Logo" />
         </div>
@@ -47,14 +47,17 @@ const FeaturedJobCard = ({
       <Typography variant="text" size="medium" className="text-neutrals-60! mb-4!" component="p">
         {company} {location}
       </Typography>
-      <Typography
-        variant="text"
-        size="medium"
-        className="mb-4 truncate text-neutrals-60! flex items-center gap-4 "
-        component="p"
-      >
-        {description}
-      </Typography>
+      <div className="hidden lg:block">
+        <Typography
+          variant="text"
+          size="medium"
+          className="mb-4 truncate text-neutrals-60! flex items-center gap-4 "
+          component="p"
+        >
+          {description}
+        </Typography>
+      </div>
+
       <div className="flex gap-2">
         {categories?.map(category => (
           <Label key={category.name} text={category.name} variant={category.variant} />

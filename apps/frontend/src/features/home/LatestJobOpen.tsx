@@ -11,13 +11,14 @@ import designer from '../../assets/logo/designer.png';
 import dropbox from '../../assets/logo/dropbox.png';
 import twitter from '../../assets/logo/twitter.png';
 import brand from '../../assets/logo/brand-strategist.png';
+import ArrowIcon from '../../assets/icons/ArrowIcon';
 
 type Category = {
   variant: 'error' | 'primary' | 'secondary' | 'success' | 'warning';
   name: string;
 };
 
-type JobType = 'Full-time' | 'Part-time' | 'Contract' | 'Internship' | 'Remote';
+type JobType = 'Fulltime' | 'Parttime' | 'Contract' | 'Internship' | 'Remote';
 
 const jobs: Array<{
   logo: string;
@@ -33,11 +34,8 @@ const jobs: Array<{
     title: 'Software Engineer',
     company: 'TechCorp',
     location: 'New York, NY',
-    type: 'Full-time',
-    categories: [
-      { variant: 'primary', name: 'Technology' },
-      { variant: 'success', name: 'Engineering' }
-    ],
+    type: 'Fulltime',
+    categories: [{ variant: 'primary', name: 'Technology' }],
     link: '#'
   },
   {
@@ -45,11 +43,8 @@ const jobs: Array<{
     title: 'Marketing Manager',
     company: 'Marketify',
     location: 'San Francisco, CA',
-    type: 'Part-time',
-    categories: [
-      { variant: 'error', name: 'Marketing' },
-      { variant: 'warning', name: 'Strategy' }
-    ],
+    type: 'Parttime',
+    categories: [{ variant: 'error', name: 'Marketing' }],
     link: '#'
   },
   {
@@ -75,7 +70,7 @@ const jobs: Array<{
     title: 'Financial Analyst',
     company: 'FinancePros',
     location: 'Boston, MA',
-    type: 'Full-time',
+    type: 'Fulltime',
     categories: [{ variant: 'error', name: 'Finance' }],
     link: '#'
   },
@@ -84,11 +79,8 @@ const jobs: Array<{
     title: 'Financial Analyst',
     company: 'FinancePros',
     location: 'Boston, MA',
-    type: 'Full-time',
-    categories: [
-      { variant: 'error', name: 'Finance' },
-      { variant: 'success', name: 'Accounting' }
-    ],
+    type: 'Fulltime',
+    categories: [{ variant: 'error', name: 'Finance' }],
     link: '#'
   },
   {
@@ -96,7 +88,7 @@ const jobs: Array<{
     title: 'Financial Analyst',
     company: 'FinancePros',
     location: 'Boston, MA',
-    type: 'Full-time',
+    type: 'Fulltime',
     categories: [{ variant: 'success', name: 'Finance' }],
     link: '#'
   },
@@ -105,7 +97,7 @@ const jobs: Array<{
     title: 'Financial Analyst',
     company: 'FinancePros',
     location: 'Boston, MA',
-    type: 'Full-time',
+    type: 'Fulltime',
     categories: [{ variant: 'success', name: 'Finance' }],
     link: '#'
   }
@@ -113,7 +105,7 @@ const jobs: Array<{
 
 const LatestJobOpen = () => {
   return (
-    <div className="px-31 overflow-hidden pt-18 pb-15 flex flex-col gap-8 bg-neutrals-10 relative max-w-360 max-h-219.25 w-full mx-auto">
+    <div className="px-31 pt-18 pb-15 flex flex-col gap-8 bg-neutrals-10 relative max-w-360 w-full mx-auto max-lg:px-6 max-md:px-4 max-md:items-center">
       <div className="absolute top-0 left-0 h-20 w-30 bg-white z-20 [clip-path:polygon(0_0,100%_0,0_100%)]" />
       <img
         src={Pattern}
@@ -124,7 +116,7 @@ const LatestJobOpen = () => {
       <div className="relative z-10">
         <SectionHeader title1="Latest" title2="jobs open" linkText="Show all jobs" linkHref="#" />
       </div>
-      <div className="grid grid-cols-2 gap-x-8 gap-y-4 w-full relative z-10">
+      <div className="grid grid-cols-2 gap-x-8 gap-y-6 relative z-10 max-md:grid-cols-1 items-start">
         {jobs.map((job, index) => (
           <LatestJobCard
             key={index}
@@ -137,6 +129,12 @@ const LatestJobOpen = () => {
             jobType={job.type}
           />
         ))}
+      </div>
+      <div className="hidden max-sm:flex">
+        <a href="#" className="text-primary font-semibold text-base flex items-center gap-4 ">
+          <p>Show all jobs</p>
+          <ArrowIcon />
+        </a>
       </div>
     </div>
   );

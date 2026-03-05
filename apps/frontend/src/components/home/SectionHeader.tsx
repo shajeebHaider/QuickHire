@@ -1,4 +1,3 @@
-import React from 'react';
 import ArrowIcon from '../../assets/icons/ArrowIcon';
 import Typography from '../base/Typography';
 
@@ -12,12 +11,17 @@ interface SectionHeaderProps {
 const SectionHeader = (props: SectionHeaderProps) => {
   return (
     <div className="flex items-center justify-between">
-      <Typography size="medium" variant="heading" component="h2" className="mb-4">
+      <Typography
+        size="medium"
+        variant="heading"
+        component="h2"
+        className="mb-4 max-md:text-3xl! max-md:leading-[35.2px]!"
+      >
         {props.title1} <span className="text-accents-blue">{props.title2}</span>
       </Typography>
       <a
         href={props.linkHref}
-        className="text-primary font-semibold text-base flex items-center gap-4"
+        className="text-primary font-semibold text-base flex items-center gap-4 max-md:hidden"
       >
         <p>{props.linkText}</p>
         <ArrowIcon />

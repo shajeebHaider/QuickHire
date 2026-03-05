@@ -8,8 +8,8 @@ import Typography from '../../components/base/Typography';
 
 const Footer = () => {
   return (
-    <div className="bg-black h-124.25 px-31 pt-16 w-full max-w-360 mx-auto">
-      <div className="flex justify-between w-full ml-auto mr-auto">
+    <div className="bg-black md:px-31 md:pt-16 py-10 px-4 w-full max-w-360 mx-auto">
+      <div className="flex justify-between w-full md:flex-row gap-10 max-xl:grid max-xl:grid-cols-2 max-md:grid-cols-1">
         <div className="flex flex-col gap-8 w-94 h-36.5">
           <div className="flex gap-3">
             <img src={logo} alt="QuickHire Logo" className="w-8 h-8 " />
@@ -29,27 +29,30 @@ const Footer = () => {
             easier.
           </Typography>
         </div>
-        <div className="ml-22">
-          <p className="text-white font-semibold mb-4.5">About</p>
-          <ul className="space-y-4.5">
-            <li className="text-neutrals-20 text-sm">Companies</li>
-            <li className="text-neutrals-20 text-sm">Pricing</li>
-            <li className="text-neutrals-20 text-sm">Terms</li>
-            <li className="text-neutrals-20 text-sm">Advice</li>
-            <li className="text-neutrals-20 text-sm">Privacy Policy</li>
-          </ul>
+        <div className="flex items-start">
+          <div className="md:ml-22 ml-0">
+            <p className="text-white font-semibold mb-4.5">About</p>
+            <ul className="space-y-4.5">
+              <li className="text-neutrals-20 text-sm">Companies</li>
+              <li className="text-neutrals-20 text-sm">Pricing</li>
+              <li className="text-neutrals-20 text-sm">Terms</li>
+              <li className="text-neutrals-20 text-sm">Advice</li>
+              <li className="text-neutrals-20 text-sm">Privacy Policy</li>
+            </ul>
+          </div>
+          <div className="md:ml-23 ml-10">
+            <p className="text-white font-semibold mb-4.5">Resources</p>
+            <ul className="space-y-4.5">
+              <li className="text-neutrals-20 text-sm">Companies</li>
+              <li className="text-neutrals-20 text-sm">Pricing</li>
+              <li className="text-neutrals-20 text-sm">Terms</li>
+              <li className="text-neutrals-20 text-sm">Advice</li>
+              <li className="text-neutrals-20 text-sm">Privacy Policy</li>
+            </ul>
+          </div>
         </div>
-        <div className="ml-23">
-          <p className="text-white font-semibold mb-4.5">Resources</p>
-          <ul className="space-y-4.5">
-            <li className="text-neutrals-20 text-sm">Companies</li>
-            <li className="text-neutrals-20 text-sm">Pricing</li>
-            <li className="text-neutrals-20 text-sm">Terms</li>
-            <li className="text-neutrals-20 text-sm">Advice</li>
-            <li className="text-neutrals-20 text-sm">Privacy Policy</li>
-          </ul>
-        </div>
-        <div className="ml-18">
+
+        <div className="md:ml-18 ml-0 mt-10 md:mt-0">
           <Typography
             variant="text"
             size="medium"
@@ -65,7 +68,7 @@ const Footer = () => {
           >
             The latest job news, articles, sent to your inbox weekly.
           </Typography>
-          <div className="flex items-center justify-start gap-2">
+          <div className="flex  justify-start gap-2 md:flex-row flex-col">
             <input
               type="email"
               placeholder="Enter your email"
@@ -77,7 +80,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="border-t py-11 border-neutrals-80 mt-10 flex justify-between">
+      <div className="border-t py-11 border-neutrals-80 mt-10 flex justify-between max-md:flex-col items-center gap-6">
         <p className="text-neutrals-20 text-base ">© 2024 QuickHire. All rights reserved.</p>
         <div className="flex gap-6">
           <img src={facebookIcon} alt="Facebook" className="w-8 h-8 inline-block mx-2" />

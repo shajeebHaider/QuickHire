@@ -18,20 +18,25 @@ const SearchJob = () => {
 
   return (
     <div>
-      <div className="w-213 p-4 bg-white search-box-shadow flex gap-2 items-center  ">
-        <div className="flex flex-1 items-center justify-center gap-4">
+      <div className="max-w-213 p-4 bg-white search-box-shadow flex flex-col lg:flex-row gap-4 items-stretch lg:items-center max-lg:mx-auto max-sm:max-w-85.75">
+        {/* Job Search */}
+        <div className="flex flex-1 items-center gap-4 border-b border-neutrals-20 pb-2 lg:pb-0">
           <SearchIcon />
           <input
             type="text"
+            aria-label="Search job"
             placeholder="Job titles or keyword..."
-            className=" px-4 py-2 border-b border-neutrals-20  focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full px-2 py-2 focus:outline-none"
           />
         </div>
-        <div className="flex flex-1 items-center justify-center gap-4 ">
+
+        {/* Location Select */}
+        <div className="flex flex-1 items-center gap-4 border-b border-neutrals-20 pb-2 lg:pb-0">
           <LocationIcon />
 
           <select
-            className="px-4 py-2 border-b border-neutrals-20  focus:outline-none focus:ring-2 focus:ring-primary"
+            aria-label="Select location"
+            className="w-full px-2 py-2 focus:outline-none"
             value={selectedValue}
             onChange={handleChange}
           >
@@ -43,17 +48,17 @@ const SearchJob = () => {
             ))}
           </select>
         </div>
+
         <button
-          onClick={() => {
-            console.log('button clicked');
-          }}
-          className="flex font-bold items-center justify-center w-52.25 h-12.5 text-sm leading-normal px-6 py-3 rounded-sm bg-primary! text-white"
+          onClick={() => console.log('button clicked')}
+          className="font-bold flex items-center justify-center sm:w-52 w-full h-12 px-6 py-3 rounded-sm bg-primary! text-white"
         >
           Search my job
         </button>
       </div>
+
       <Typography size="small" variant="text" component="p" className="text-black mt-4">
-        Popular : <span className="font-medium"> UI Designer, UX Researcher, Android, Admin</span>
+        Popular : <span className="font-medium">UI Designer, UX Researcher, Android, Admin</span>
       </Typography>
     </div>
   );
