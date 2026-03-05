@@ -113,18 +113,18 @@ const jobs: Array<{
 
 const LatestJobOpen = () => {
   return (
-    <div className="px-31 pt-18 pb-15 flex flex-col gap-8 bg-neutrals-10 relative max-w-360 mx-auto">
+    <div className="px-31 overflow-hidden pt-18 pb-15 flex flex-col gap-8 bg-neutrals-10 relative max-w-360 max-h-219.25 w-full mx-auto">
       <div className="absolute top-0 left-0 h-20 w-30 bg-white z-20 [clip-path:polygon(0_0,100%_0,0_100%)]" />
       <img
         src={Pattern}
         alt="Background Pattern"
-        className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
+        className="absolute object-cover top-0 left-195  pointer-events-none"
         style={{ zIndex: 1 }}
       />
       <div className="relative z-10">
         <SectionHeader title1="Latest" title2="jobs open" linkText="Show all jobs" linkHref="#" />
       </div>
-      <div className="grid grid-cols-2 gap-8 w-full relative z-10">
+      <div className="grid grid-cols-2 gap-x-8 gap-y-4 w-full relative z-10">
         {jobs.map((job, index) => (
           <LatestJobCard
             key={index}
