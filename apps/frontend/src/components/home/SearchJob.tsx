@@ -1,6 +1,7 @@
 import LocationIcon from '../../assets/icons/LocationIcon';
 import SearchIcon from '../../assets/icons/SearchIcon';
 import { useState } from 'react';
+import Typography from '../base/Typography';
 
 const locations = [
   { label: 'Option 1', value: 'option1' },
@@ -51,9 +52,9 @@ const SearchJob = () => {
           Search my job
         </button>
       </div>
-      <p className="text-base font-normal leading-[160%] text-black mt-4">
+      <Typography size="small" variant="text" component="p" className="text-black mt-4">
         Popular : <span className="font-medium"> UI Designer, UX Researcher, Android, Admin</span>
-      </p>
+      </Typography>
     </div>
   );
 };

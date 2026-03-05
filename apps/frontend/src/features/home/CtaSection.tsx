@@ -1,4 +1,5 @@
 import dashboard from '../../assets/images/dashboard.png';
+import Typography from '../../components/base/Typography';
 
 const CtaSection = () => {
   return (
@@ -6,8 +7,17 @@ const CtaSection = () => {
       <div className="px-17.5 relative py-16 bg-primary max-w-298 h-103.5 mx-auto">
         <div className="absolute top-0 left-0 h-20 w-30 bg-white z-20 [clip-path:polygon(0_0,100%_0,0_100%)]" />
         <div className="max-w-91 mt-6.25">
-          <h2 className="text-5xl mb-6 text-white font-semibold">Start posting jobs today</h2>
-          <p className="text-white mb-6">Start posting jobs for only $10.</p>
+          <Typography
+            variant="heading"
+            size="medium"
+            className=" mb-6! text-white! "
+            component="h2"
+          >
+            Start posting jobs today
+          </Typography>
+          <Typography variant="text" size="medium" className="text-white! mb-6!" component="p">
+            Start posting jobs for only $10.
+          </Typography>
           <button className="mt-6 px-6 py-3 bg-white text-primary font-semibold hover:bg-gray-100 transition-colors duration-200">
             Sign Up For Free
           </button>

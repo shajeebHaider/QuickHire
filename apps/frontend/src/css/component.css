@@ -1,0 +1,29 @@
+.typography-large {
+  color: #25324b;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+  &.typography-heading {
+    @apply font-semibold text-7xl leading-[79.2px] mb-0;
+  }
+}
+
+.typography-medium {
+  color: #25324b;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 25px;
+  &.typography-heading {
+    @apply font-semibold text-5xl leading-[52.8px] mb-0;
+  }
+}
+
+.typography-small {
+  color: #25324b;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  &.typography-heading {
+    @apply font-semibold text-[32px] leading-[35.2px] mb-0;
+  }
+}

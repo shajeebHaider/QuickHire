@@ -1,5 +1,6 @@
 import React from 'react';
 import ArrowIcon from '../../assets/icons/ArrowIcon';
+import Typography from '../base/Typography';
 
 interface CategoryCardProps {
   icon: React.ReactNode;
@@ -14,15 +15,24 @@ const CategoryCard = ({ icon, title, jobCount, link }: CategoryCardProps) => {
       <div className="text-primary group-hover:text-white transition-colors duration-200">
         {icon}
       </div>
-      <h3 className="text-2xl font-semibold text-black mt-4 mb-2 group-hover:text-white transition-colors duration-200">
+      <Typography
+        variant="heading"
+        size="medium"
+        component="h3"
+        className="text-2xl! mt-4 mb-2 group-hover:text-white! transition-colors duration-200"
+      >
         {title}
-      </h3>
-      <p className="text-sm text-neutrals-60 flex items-center gap-4 group-hover:text-white transition-colors duration-200">
+      </Typography>
+      <Typography
+        variant="text"
+        size="small"
+        className="text-lg! text-neutrals-60! flex items-center gap-4 group-hover:text-white! transition-colors duration-200"
+      >
         {jobCount} jobs available{' '}
         <a href={link} className="text-black group-hover:text-white transition-colors duration-200">
           <ArrowIcon />
         </a>
-      </p>
+      </Typography>
     </div>
   );
 };

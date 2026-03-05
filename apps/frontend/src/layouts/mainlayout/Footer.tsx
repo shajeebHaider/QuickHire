@@ -4,6 +4,7 @@ import twitterIcon from '../../assets/icons/twitter.png';
 import linkedinIcon from '../../assets/icons/linkedin.png';
 import instagramIcon from '../../assets/icons/instagram.png';
 import driblbleIcon from '../../assets/icons/dribbble.png';
+import Typography from '../../components/base/Typography';
 
 const Footer = () => {
   return (
@@ -13,13 +14,20 @@ const Footer = () => {
           <div className="flex gap-3">
             <img src={logo} alt="QuickHire Logo" className="w-8 h-8 " />
             <a href="/">
-              <p className="text-2xl leading-normal font-bold text-white">QuickHire</p>
+              <Typography variant="heading" size="small" className="text-white! " component="h3">
+                QuickHire
+              </Typography>
             </a>
           </div>
-          <p className="text-neutrals-20 text-base">
+          <Typography
+            className="text-neutrals-20! mb-6!"
+            size="medium"
+            variant="text"
+            component="p"
+          >
             Great platform for the job seeker that passionate about startups. Find your dream job
             easier.
-          </p>
+          </Typography>
         </div>
         <div className="ml-22">
           <p className="text-white font-semibold mb-4.5">About</p>
@@ -42,10 +50,21 @@ const Footer = () => {
           </ul>
         </div>
         <div className="ml-18">
-          <p className="text-white font-semibold mb-4.5">Get job notifications</p>
-          <p className="text-neutrals-20 text-base mb-10 max-w-76.5">
+          <Typography
+            variant="text"
+            size="medium"
+            className="text-white! font-semibold! mb-4.5! text-lg!"
+          >
+            Get job notifications
+          </Typography>
+          <Typography
+            className="text-neutrals-20! mb-10! max-w-76.5!"
+            size="medium"
+            variant="text"
+            component="p"
+          >
             The latest job news, articles, sent to your inbox weekly.
-          </p>
+          </Typography>
           <div className="flex items-center justify-start gap-2">
             <input
               type="email"

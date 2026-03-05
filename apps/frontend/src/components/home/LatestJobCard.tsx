@@ -1,5 +1,6 @@
 import React from 'react';
 import Label from '../base/Label';
+import Typography from '../base/Typography';
 
 interface LatestJobCardProps {
   logo: string;
@@ -30,11 +31,13 @@ const LatestJobCard = ({
       </div>
       <div>
         <a href={link}>
-          <h3 className="text-2xl font-semibold text-black">{title}</h3>
+          <Typography variant="heading" size="small" className="text-lg!" component="h3">
+            {title}
+          </Typography>
         </a>
-        <p className="text-sm text-neutrals-60 mb-4 ">
-          {company} . {location}
-        </p>
+        <Typography variant="text" size="medium" className="text-neutrals-60! mb-2!" component="p">
+          {company} {location}
+        </Typography>
         <div className="flex gap-2">
           <Label text={jobType || 'Unknown'} variant="success" />
           <div className="h-8.5 border-r border-neutrals-20 mx-2" />

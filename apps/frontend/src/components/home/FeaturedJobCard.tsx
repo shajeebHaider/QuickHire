@@ -1,5 +1,6 @@
 import React from 'react';
 import Label from '../base/Label';
+import Typography from '../base/Typography';
 
 interface FeaturedJobCardProps {
   logo: string;
@@ -34,14 +35,26 @@ const FeaturedJobCard = ({
         <span className="py-1 px-3 border border-primary text-base font-normal">{jobType}</span>
       </div>
       <a href={link}>
-        <h3 className="text-2xl font-semibold text-black mt-4 mb-0.5">{title}</h3>
+        <Typography
+          variant="heading"
+          size="small"
+          className="text-lg! mt-4! mb-0.5!"
+          component="h3"
+        >
+          {title}
+        </Typography>
       </a>
-      <p className="text-sm text-neutrals-60 mb-4 ">
+      <Typography variant="text" size="medium" className="text-neutrals-60! mb-4!" component="p">
         {company} {location}
-      </p>
-      <p className="text-sm mb-4 truncate text-neutrals-60 flex items-center gap-4 ">
+      </Typography>
+      <Typography
+        variant="text"
+        size="medium"
+        className="mb-4 truncate text-neutrals-60! flex items-center gap-4 "
+        component="p"
+      >
         {description}
-      </p>
+      </Typography>
       <div className="flex gap-2">
         {categories?.map(category => (
           <Label key={category.name} text={category.name} variant={category.variant} />

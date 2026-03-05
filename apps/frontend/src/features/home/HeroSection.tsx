@@ -2,6 +2,7 @@ import vector from '../../assets/images/Vector.png';
 import herocharacter from '../../assets/images/849d976651c585cf41e864d6b53eba0a93aec63f.png';
 import backgroundPattern from '../../assets/images/Pattern.png';
 import SearchJob from '../../components/home/SearchJob';
+import Typography from '../../components/base/Typography';
 
 const HeroSection = () => {
   return (
@@ -14,15 +15,20 @@ const HeroSection = () => {
 
       <div className="relative z-30 max-w-315 mx-auto px-6 xl:px-0 h-full">
         <div className="max-w-133 pt-35">
-          <h1 className="text-7xl leading-[110%] font-semibold ">
+          <Typography size="large" variant="heading" component="h1">
             Discover more than <br />
             <span className="text-accents-blue">5000+ Jobs</span>
-          </h1>
+          </Typography>
           <img src={vector} alt="Hero Image" className="w-114 h-auto mb-6" />
-          <p className="text-xl leading-[160%] text-neutrals-80 mb-6">
+          <Typography
+            className="text-neutrals-80! mb-6!"
+            size="medium"
+            variant="text"
+            component="p"
+          >
             Great platform for the job seeker that searching for new career heights and passionate
             about startups.
-          </p>
+          </Typography>
         </div>
         <SearchJob />
       </div>
