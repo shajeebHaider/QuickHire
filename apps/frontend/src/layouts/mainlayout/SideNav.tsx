@@ -29,7 +29,7 @@ const SideNav = ({ isOpen, onClose }: SideNavProps) => {
             <p className="text-xl font-bold">Menu</p>
             <button
               onClick={onClose}
-              className="text-2xl leading-none hover:text-primary"
+              className="text-2xl cursor-pointer leading-none hover:text-primary"
               aria-label="Close menu"
             >
               ×
@@ -54,10 +54,10 @@ const SideNav = ({ isOpen, onClose }: SideNavProps) => {
           </nav>
 
           <div className="mt-auto p-6 space-y-4 border-t border-neutrals-20">
-            <button className="w-full font-bold flex items-center justify-center h-12 text-sm leading-normal px-6 py-3 rounded-sm text-primary border border-primary hover:bg-primary hover:bg-opacity-10 transition-colors">
+            <button className="w-full cursor-pointer font-bold flex items-center justify-center h-12 text-sm leading-normal px-6 py-3 rounded-sm text-primary border border-primary hover:bg-primary hover:bg-opacity-10 transition-colors">
               Log In
             </button>
-            <button className="w-full font-bold flex items-center justify-center h-12 text-sm leading-normal px-6 py-3 rounded-sm bg-primary! text-white hover:bg-opacity-90 transition-opacity">
+            <button className="w-full cursor-pointer font-bold flex items-center justify-center h-12 text-sm leading-normal px-6 py-3 rounded-sm bg-primary! text-white hover:bg-opacity-90 transition-opacity">
               Sign Up
             </button>
           </div>

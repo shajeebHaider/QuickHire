@@ -15,7 +15,7 @@ const CtaSection = () => {
             Start posting jobs for only $10.
           </Typography>
 
-          <button className="px-6 py-3 bg-white text-primary font-semibold hover:bg-gray-100 transition">
+          <button className="px-6 py-3 cursor-pointer bg-white text-primary font-semibold hover:bg-gray-100 transition">
             Sign Up For Free
           </button>
         </div>

@@ -51,7 +51,7 @@ const SearchJob = () => {
 
         <button
           onClick={() => console.log('button clicked')}
-          className="font-bold flex items-center justify-center sm:w-52 w-full h-12 px-6 py-3 rounded-sm bg-primary! text-white"
+          className="font-bold flex items-center cursor-pointer justify-center sm:w-52 w-full h-12 px-6 py-3 rounded-sm bg-primary! text-white"
         >
           Search my job
         </button>

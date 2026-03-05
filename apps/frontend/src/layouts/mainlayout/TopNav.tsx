@@ -23,17 +23,17 @@ const TopNav = () => {
         </div>
 
         <div className="flex items-center justify-center gap-4">
-          <button className="flex font-bold items-center justify-center w-23 h-12.5 text-sm leading-normal px-6 py-3 rounded-sm text-primary max-sm:hidden">
+          <button className="flex font-bold cursor-pointer items-center justify-center w-23 h-12.5 text-sm leading-normal px-6 py-3 rounded-sm text-primary max-sm:hidden">
             Log In
           </button>
           <div className="border-r h-12 border border-neutrals-20 max-sm:hidden" />
-          <button className="flex font-bold items-center justify-center w-27 h-12.5 text-sm leading-normal px-6 py-3 rounded-sm bg-primary! text-white max-sm:hidden">
+          <button className="flex font-bold cursor-pointer items-center justify-center w-27 h-12.5 text-sm leading-normal px-6 py-3 rounded-sm bg-primary! text-white max-sm:hidden">
             Sign Up
           </button>
 
           <button
             onClick={() => setIsSideNavOpen(true)}
-            className="hidden  max-sm:flex items-center justify-center p-2 hover:bg-gray-100 rounded-sm transition-colors"
+            className="hidden  max-sm:flex cursor-pointer items-center justify-center p-2 hover:bg-gray-100 rounded-sm transition-colors"
             aria-label="Open menu"
           >
             <MenuIcon />
