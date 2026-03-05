@@ -19,14 +19,12 @@ const SideNav = ({ isOpen, onClose }: SideNavProps) => {
 
   return (
     <>
-      {/* Side Navigation */}
       <div
         className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <div className="flex flex-col h-full">
-          {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-neutrals-20">
             <p className="text-xl font-bold">Menu</p>
             <button
@@ -38,7 +36,6 @@ const SideNav = ({ isOpen, onClose }: SideNavProps) => {
             </button>
           </div>
 
-          {/* Navigation Links */}
           <nav className="flex flex-col p-6 space-y-6">
             <a
               href="#"
@@ -56,12 +53,11 @@ const SideNav = ({ isOpen, onClose }: SideNavProps) => {
             </a>
           </nav>
 
-          {/* Auth Buttons */}
           <div className="mt-auto p-6 space-y-4 border-t border-neutrals-20">
             <button className="w-full font-bold flex items-center justify-center h-12 text-sm leading-normal px-6 py-3 rounded-sm text-primary border border-primary hover:bg-primary hover:bg-opacity-10 transition-colors">
               Log In
             </button>
-            <button className="w-full font-bold flex items-center justify-center h-12 text-sm leading-normal px-6 py-3 rounded-sm bg-blue-500 text-black hover:bg-opacity-90 transition-opacity">
+            <button className="w-full font-bold flex items-center justify-center h-12 text-sm leading-normal px-6 py-3 rounded-sm bg-primary! text-white hover:bg-opacity-90 transition-opacity">
               Sign Up
             </button>
           </div>

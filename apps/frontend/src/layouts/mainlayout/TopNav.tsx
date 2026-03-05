@@ -23,7 +23,6 @@ const TopNav = () => {
         </div>
 
         <div className="flex items-center justify-center gap-4">
-          {/* Desktop Auth Buttons */}
           <button className="flex font-bold items-center justify-center w-23 h-12.5 text-sm leading-normal px-6 py-3 rounded-sm text-primary max-sm:hidden">
             Log In
           </button>
@@ -32,10 +31,9 @@ const TopNav = () => {
             Sign Up
           </button>
 
-          {/* Mobile Menu Icon */}
           <button
             onClick={() => setIsSideNavOpen(true)}
-            className="hidden max-sm:flex items-center justify-center p-2 hover:bg-gray-100 rounded-sm transition-colors"
+            className="hidden  max-sm:flex items-center justify-center p-2 hover:bg-gray-100 rounded-sm transition-colors"
             aria-label="Open menu"
           >
             <MenuIcon />
@@ -43,7 +41,6 @@ const TopNav = () => {
         </div>
       </div>
 
-      {/* Side Navigation */}
       <SideNav isOpen={isSideNavOpen} onClose={() => setIsSideNavOpen(false)} />
     </>
   );

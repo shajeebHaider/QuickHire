@@ -4,7 +4,7 @@ import { paths } from './paths';
 import MainLayout from '../layouts/mainlayout/MainLayout';
 import Home from '../pages/Home';
 import { LoadingFallback } from '../components/LoadingFallback';
-import Companies from '../pages/Companies';
+import AllJobs from '../pages/AllJobs';
 
 export const routes: RouteObject[] = [
   {
@@ -22,8 +22,8 @@ export const routes: RouteObject[] = [
         element: <Home />
       },
       {
-        path: paths.companies,
-        element: <Companies />
+        path: paths.jobs,
+        element: <AllJobs />
       },
       {
         path: paths.contact,

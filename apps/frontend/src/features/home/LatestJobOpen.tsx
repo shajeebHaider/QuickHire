@@ -12,6 +12,7 @@ import dropbox from '../../assets/logo/dropbox.png';
 import twitter from '../../assets/logo/twitter.png';
 import brand from '../../assets/logo/brand-strategist.png';
 import ArrowIcon from '../../assets/icons/ArrowIcon';
+import { paths } from '../../routes/paths';
 
 type Category = {
   variant: 'error' | 'primary' | 'secondary' | 'success' | 'warning';
@@ -35,8 +36,7 @@ const jobs: Array<{
     company: 'TechCorp',
     location: 'New York, NY',
     type: 'Fulltime',
-    categories: [{ variant: 'primary', name: 'Technology' }],
-    link: '#'
+    categories: [{ variant: 'primary', name: 'Technology' }]
   },
   {
     logo: emailMarketing,
@@ -44,8 +44,7 @@ const jobs: Array<{
     company: 'Marketify',
     location: 'San Francisco, CA',
     type: 'Parttime',
-    categories: [{ variant: 'error', name: 'Marketing' }],
-    link: '#'
+    categories: [{ variant: 'error', name: 'Marketing' }]
   },
   {
     logo: dropbox,
@@ -53,8 +52,7 @@ const jobs: Array<{
     company: 'DataWorks',
     location: 'Chicago, IL',
     type: 'Contract',
-    categories: [{ variant: 'success', name: 'Analytics' }],
-    link: '#'
+    categories: [{ variant: 'success', name: 'Analytics' }]
   },
   {
     logo: designer,
@@ -62,8 +60,7 @@ const jobs: Array<{
     company: 'DesignHub',
     location: 'Remote',
     type: 'Remote',
-    categories: [{ variant: 'warning', name: 'Design' }],
-    link: '#'
+    categories: [{ variant: 'warning', name: 'Design' }]
   },
   {
     logo: twitter,
@@ -71,8 +68,7 @@ const jobs: Array<{
     company: 'FinancePros',
     location: 'Boston, MA',
     type: 'Fulltime',
-    categories: [{ variant: 'error', name: 'Finance' }],
-    link: '#'
+    categories: [{ variant: 'error', name: 'Finance' }]
   },
   {
     logo: brand,
@@ -80,8 +76,7 @@ const jobs: Array<{
     company: 'FinancePros',
     location: 'Boston, MA',
     type: 'Fulltime',
-    categories: [{ variant: 'error', name: 'Finance' }],
-    link: '#'
+    categories: [{ variant: 'error', name: 'Finance' }]
   },
   {
     logo: pitch,
@@ -89,8 +84,7 @@ const jobs: Array<{
     company: 'FinancePros',
     location: 'Boston, MA',
     type: 'Fulltime',
-    categories: [{ variant: 'success', name: 'Finance' }],
-    link: '#'
+    categories: [{ variant: 'success', name: 'Finance' }]
   },
   {
     logo: product,
@@ -98,8 +92,7 @@ const jobs: Array<{
     company: 'FinancePros',
     location: 'Boston, MA',
     type: 'Fulltime',
-    categories: [{ variant: 'success', name: 'Finance' }],
-    link: '#'
+    categories: [{ variant: 'success', name: 'Finance' }]
   }
 ];
 
@@ -114,7 +107,7 @@ const LatestJobOpen = () => {
         style={{ zIndex: 1 }}
       />
       <div className="relative z-10">
-        <SectionHeader title1="Latest" title2="jobs open" linkText="Show all jobs" linkHref="#" />
+        <SectionHeader title1="Latest" title2="jobs open" />
       </div>
       <div className="grid grid-cols-2 gap-x-8 gap-y-6 relative z-10 max-md:grid-cols-1 items-start">
         {jobs.map((job, index) => (
@@ -131,7 +124,10 @@ const LatestJobOpen = () => {
         ))}
       </div>
       <div className="hidden max-sm:flex">
-        <a href="#" className="text-primary font-semibold text-base flex items-center gap-4 ">
+        <a
+          href={paths.jobs}
+          className="text-primary font-semibold text-base flex items-center gap-4 "
+        >
           <p>Show all jobs</p>
           <ArrowIcon />
         </a>

@@ -1,11 +1,10 @@
 import ArrowIcon from '../../assets/icons/ArrowIcon';
+import { paths } from '../../routes/paths';
 import Typography from '../base/Typography';
 
 interface SectionHeaderProps {
   title1: string;
   title2: string;
-  linkText: string;
-  linkHref: string;
 }
 
 const SectionHeader = (props: SectionHeaderProps) => {
@@ -20,10 +19,10 @@ const SectionHeader = (props: SectionHeaderProps) => {
         {props.title1} <span className="text-accents-blue">{props.title2}</span>
       </Typography>
       <a
-        href={props.linkHref}
+        href={paths.jobs}
         className="text-primary font-semibold text-base flex items-center gap-4 max-md:hidden"
       >
-        <p>{props.linkText}</p>
+        <p>Show all jobs</p>
         <ArrowIcon />
       </a>
     </div>

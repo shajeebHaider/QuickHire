@@ -4,7 +4,7 @@ export const rootPaths = {
 
 export const paths = {
   home: rootPaths.root,
-  companies: '/companies',
+  jobs: '/jobs',
   contact: '/contact',
   dashboard: '/dashboard',
   profile: '/profile',

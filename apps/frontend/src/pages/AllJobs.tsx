@@ -1,16 +1,14 @@
-import SectionHeader from '../../components/home/SectionHeader';
-import FeaturedJobCard from '../../components/home/FeaturedJobCard';
+import Typography from '../components/base/Typography';
+import FeaturedJobCard from '../components/home/FeaturedJobCard';
 
-import emailMarketing from '../../assets/logo/Email Marketing.png';
-import product from '../../assets/logo/product.png';
-import pitch from '../../assets/logo/pitch.png';
-import canva from '../../assets/logo/canva.png';
-import designer from '../../assets/logo/designer.png';
-import dropbox from '../../assets/logo/dropbox.png';
-import twitter from '../../assets/logo/twitter.png';
-import brand from '../../assets/logo/brand-strategist.png';
-import ArrowIcon from '../../assets/icons/ArrowIcon';
-import { paths } from '../../routes/paths';
+import emailMarketing from '../assets/logo/Email Marketing.png';
+import product from '../assets/logo/product.png';
+import pitch from '../assets/logo/pitch.png';
+import canva from '../assets/logo/canva.png';
+import designer from '../assets/logo/designer.png';
+import dropbox from '../assets/logo/dropbox.png';
+import twitter from '../assets/logo/twitter.png';
+import brand from '../assets/logo/brand-strategist.png';
 
 type Category = {
   variant: 'error' | 'primary' | 'secondary' | 'success' | 'warning';
@@ -120,10 +118,17 @@ const jobs: Array<{
   }
 ];
 
-const FeaturedJob = () => {
+const AllJobs = () => {
   return (
-    <div className="px-31 py-18 flex flex-col gap-8 max-w-360 mx-auto max-lg:px-6 max-sm:px-4 max-sm:items-center">
-      <SectionHeader title1="Featured" title2="jobs" />
+    <div className="min-h-screen px-31 py-18 flex flex-col gap-8 max-w-360 mx-auto max-lg:px-6 max-sm:px-4 max-sm:items-center">
+      <Typography
+        size="medium"
+        variant="heading"
+        component="h2"
+        className="mb-4! max-md:text-3xl! max-md:leading-[35.2px]!"
+      >
+        All <span className="text-accents-blue">Jobs</span>
+      </Typography>
       <div className="grid grid-cols-4 gap-8 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1">
         {jobs.map((job, index) => (
           <FeaturedJobCard
@@ -139,17 +144,8 @@ const FeaturedJob = () => {
           />
         ))}
       </div>
-      <div className="hidden max-sm:flex">
-        <a
-          href={paths.jobs}
-          className="text-primary font-semibold text-base flex items-center gap-4 "
-        >
-          <p>Show all jobs</p>
-          <ArrowIcon />
-        </a>
-      </div>
     </div>
   );
 };
 
-export default FeaturedJob;
+export default AllJobs;
