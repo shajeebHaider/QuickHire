@@ -29,6 +29,7 @@ model Job {
   title        String
   description  String
   companyName  String
+  companyLogo  String?
   location     String
   jobtype      String
   categoryId   Int
