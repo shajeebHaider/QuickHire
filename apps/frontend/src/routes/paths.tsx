@@ -9,7 +9,8 @@ export const paths = {
   contact: '/contact',
   dashboard: '/dashboard',
   profile: '/profile',
-  settings: '/settings'
+  settings: '/settings',
+  applications: '/dashboard/applications'
 };
 
 export const endpoints = {};

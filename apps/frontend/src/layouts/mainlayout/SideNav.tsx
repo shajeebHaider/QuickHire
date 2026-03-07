@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { paths } from '../../routes/paths';
 
 interface SideNavProps {
   isOpen: boolean;
@@ -38,7 +39,7 @@ const SideNav = ({ isOpen, onClose }: SideNavProps) => {
 
           <nav className="flex flex-col p-6 space-y-6">
             <a
-              href="#"
+              href={paths.jobs}
               className="text-base leading-normal hover:text-primary transition-colors"
               onClick={onClose}
             >
@@ -59,6 +60,9 @@ const SideNav = ({ isOpen, onClose }: SideNavProps) => {
             </button>
             <button className="w-full cursor-pointer font-bold flex items-center justify-center h-12 text-sm leading-normal px-6 py-3 rounded-sm bg-primary! text-white hover:bg-opacity-90 transition-opacity">
               Sign Up
+            </button>
+            <button className="w-full cursor-pointer font-bold flex items-center justify-center h-12 text-sm leading-normal px-6 py-3 rounded-sm bg-primary! text-white hover:bg-opacity-90 transition-opacity">
+              Dashboard
             </button>
           </div>
         </div>

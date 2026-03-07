@@ -6,6 +6,9 @@ import Home from '../pages/Home';
 import { LoadingFallback } from '../components/LoadingFallback';
 import AllJobs from '../pages/AllJobs';
 import JobDetails from '../pages/JobDetails';
+import Dashboard from '../pages/Dashboard';
+import AdminLayout from '../layouts/admin-layout/AdminLayout';
+import Applications from '../pages/Applications';
 
 export const routes: RouteObject[] = [
   {
@@ -27,29 +30,34 @@ export const routes: RouteObject[] = [
         element: <AllJobs />
       },
       {
-        path: "/job/:id",
-        element: <JobDetails />,
-      },
-      {
-        path: paths.contact,
-        element: <div>Contact Page</div>
-      },
-      {
-        path: paths.dashboard,
-        element: <div>Dashboard Page</div>
-      },
-      {
-        path: paths.profile,
-        element: <div>Profile Page</div>
-      },
-      {
-        path: paths.settings,
-        element: <div>Settings Page</div>
+        path: paths.jobDetails(':id'),
+        element: <JobDetails />
       },
       {
         path: '*',
         element: <Navigate to={paths.home} replace />
       }
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: (
+      <AdminLayout>
+        <Suspense fallback={<LoadingFallback />}>
+          <Outlet />
+        </Suspense>
+      </AdminLayout>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Dashboard />
+      },
+      {
+        path: paths.applications,
+        element: <Applications />
+      },
+      {}
     ]
   }
 ];

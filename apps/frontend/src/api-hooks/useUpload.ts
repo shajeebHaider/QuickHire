@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { uploadImage } from "../api/upload";
+import { useState } from 'react';
+import { uploadImage } from '../api/upload';
 
 export const useUpload = () => {
   const [isUploading, setIsUploading] = useState(false);
@@ -12,7 +12,7 @@ export const useUpload = () => {
       const url = await uploadImage(file);
       return url;
     } catch (err) {
-      setError("Upload failed");
+      setError('Upload failed');
       return null;
     } finally {
       setIsUploading(false);

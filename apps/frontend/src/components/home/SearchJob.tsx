@@ -2,12 +2,9 @@ import LocationIcon from '../../assets/icons/LocationIcon';
 import SearchIcon from '../../assets/icons/SearchIcon';
 import { useState } from 'react';
 import Typography from '../base/Typography';
+import { useJobs } from '../../api-hooks/useJobs';
+import type { Job } from '../../pages/AllJobs';
 
-const locations = [
-  { label: 'Option 1', value: 'option1' },
-  { label: 'Option 2', value: 'option2' },
-  { label: 'Option 3', value: 'option3' }
-];
 
 const SearchJob = () => {
   const [selectedValue, setSelectedValue] = useState('');
@@ -16,10 +13,15 @@ const SearchJob = () => {
     setSelectedValue(event.target.value);
   };
 
+  const {data: jobs = []} = useJobs();
+
+  const locations = jobs.map((job: Job) => job.location);
+
+  console.log(locations);
+
   return (
     <div>
       <div className="max-w-213 p-4 bg-white search-box-shadow flex flex-col lg:flex-row gap-4 items-stretch lg:items-center max-lg:mx-auto max-sm:max-w-85.75">
-        {/* Job Search */}
         <div className="flex flex-1 items-center gap-4 border-b border-neutrals-20 pb-2 lg:pb-0">
           <SearchIcon />
           <input
@@ -30,7 +32,6 @@ const SearchJob = () => {
           />
         </div>
 
-        {/* Location Select */}
         <div className="flex flex-1 items-center gap-4 border-b border-neutrals-20 pb-2 lg:pb-0">
           <LocationIcon />
 
@@ -41,9 +42,9 @@ const SearchJob = () => {
             onChange={handleChange}
           >
             <option value="">Select your location...</option>
-            {locations.map(option => (
-              <option key={option.value} value={option.value}>
-                {option.label}
+            {locations.map((location: string, index: number) => (
+              <option key={index} value={location}>
+                {location}
               </option>
             ))}
           </select>

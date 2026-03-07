@@ -8,13 +8,10 @@ import type { Job } from '../../pages/AllJobs';
 import { useMemo } from 'react';
 
 const FeaturedJob = () => {
-   const { data: jobs= [] } = useJobs();
+  const { data: jobs = [] } = useJobs();
 
-    const featuredJobs = useMemo(
-    () => jobs.filter((job: Job) => job.isFeatured).slice(0, 8),
-    [jobs]
-  );
-   
+  const featuredJobs = useMemo(() => jobs.filter((job: Job) => job.isFeatured).slice(0, 8), [jobs]);
+
   return (
     <div className="px-31 py-18 flex flex-col gap-8 max-w-360 mx-auto max-lg:px-6 max-sm:px-4 max-sm:items-center">
       <SectionHeader title1="Featured" title2="jobs" />
@@ -27,7 +24,7 @@ const FeaturedJob = () => {
             company={job.companyName}
             location={job.location}
             description={job.description}
-            category={job.category} 
+            category={job.category}
             link={paths.jobDetails(job.id)}
             jobtype={job.jobtype}
           />

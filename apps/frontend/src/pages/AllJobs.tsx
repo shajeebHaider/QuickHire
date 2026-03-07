@@ -29,21 +29,18 @@ const AllJobs = () => {
   const [sortBy, setSortBy] = useState('trending');
 
   const filteredAndSortedJobs = useMemo(() => {
-    let filtered = jobs.filter((job: Job) =>
-      job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      job.companyName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      job.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      job.description.toLowerCase().includes(searchQuery.toLowerCase())
+    let filtered = jobs.filter(
+      (job: Job) =>
+        job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        job.companyName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        job.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        job.description.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     if (sortBy === 'location') {
-      filtered = filtered.sort((a: Job, b: Job) =>
-        a.location.localeCompare(b.location)
-      );
+      filtered = filtered.sort((a: Job, b: Job) => a.location.localeCompare(b.location));
     } else if (sortBy === 'title') {
-      filtered = filtered.sort((a: Job, b: Job) =>
-        a.title.localeCompare(b.title)
-      );
+      filtered = filtered.sort((a: Job, b: Job) => a.title.localeCompare(b.title));
     } else if (sortBy === 'latest') {
       filtered = filtered.reverse();
     }
@@ -68,13 +65,13 @@ const AllJobs = () => {
             type="text"
             placeholder="Search by job title, company, or location..."
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={e => setSearchQuery(e.target.value)}
             className="flex-1 px-6 py-3 border border-neutrals-20 rounded bg-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
           />
 
           <select
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
+            onChange={e => setSortBy(e.target.value)}
             className="px-6 py-3 border border-neutrals-20 rounded bg-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all min-w-40"
           >
             <option value="trending">Trending</option>

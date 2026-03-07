@@ -32,6 +32,9 @@ const TopNav = () => {
           <button className="flex font-bold cursor-pointer items-center justify-center w-27 h-12.5 text-sm leading-normal px-6 py-3 rounded-sm bg-primary! text-white max-sm:hidden">
             Sign Up
           </button>
+          <button className="flex font-bold cursor-pointer items-center justify-center w-27 h-12.5 text-sm leading-normal px-6 py-3 rounded-sm bg-primary! text-white max-sm:hidden">
+            Dashboard
+          </button>
 
           <button
             onClick={() => setIsSideNavOpen(true)}
