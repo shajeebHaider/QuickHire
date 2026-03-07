@@ -1,8 +1,10 @@
 import Typography from '../components/base/Typography';
 import { useAppications } from '../api-hooks/useApplications';
+import { useNavigate } from 'react-router-dom';
+import { paths } from '../routes/paths';
 
 interface Application {
-  id: string;
+  id: number;
   jobId: number;
   applicantName: string;
   applicantEmail: string;
@@ -17,7 +19,7 @@ interface Application {
 const Applications = () => {
   const { data: applications = [] } = useAppications();
 
-  console.log(applications);
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex flex-col w-full">
@@ -76,7 +78,10 @@ const Applications = () => {
                 {applications.map((app: Application) => (
                   <tr
                     key={app.id}
-                    className="border-b border-neutrals-20 hover:bg-neutrals-10 transition-colors"
+                    onClick={() => {
+                      navigate(paths.editApplication(app.id));
+                    }}
+                    className="border-b cursor-pointer border-neutrals-20 hover:bg-neutrals-10 transition-colors"
                   >
                     <td className="px-6 py-4 max-sm:px-3 max-sm:py-3">
                       <Typography variant="text" size="medium">
@@ -121,7 +126,9 @@ const Applications = () => {
                     <td className="px-6 py-4 max-sm:px-3 max-sm:py-3">
                       <div className="flex gap-2 flex-nowrap">
                         <button
-                          onClick={() => {}}
+                          onClick={() => {
+                            navigate(paths.editApplication(app.id));
+                          }}
                           className="px-3 py-1 text-sm bg-primary/10 text-primary rounded hover:bg-primary/20 transition-colors whitespace-nowrap"
                         >
                           Manage

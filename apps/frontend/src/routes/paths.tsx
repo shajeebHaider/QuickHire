@@ -10,7 +10,10 @@ export const paths = {
   dashboard: '/dashboard',
   profile: '/profile',
   settings: '/settings',
-  applications: '/dashboard/applications'
+  applications: '/dashboard/applications',
+  addjob: '/dashboard/add-new-job',
+  editJob: (id: number | string) => `/dashboard/edit-job/${id}`,
+  editApplication: (id: number | string) => `/dashboard/edit-application/${id}`
 };
 
 export const endpoints = {};

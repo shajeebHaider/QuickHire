@@ -1,9 +1,12 @@
+import { useNavigate } from 'react-router-dom';
 import { useJobs } from '../api-hooks/useJobs';
 import Typography from '../components/base/Typography';
 import type { Job } from './AllJobs';
+import { paths } from '../routes/paths';
 
 const Dashboard = () => {
   const { data: jobs = [] } = useJobs();
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex flex-col w-full">
@@ -16,6 +19,9 @@ const Dashboard = () => {
 
             <button
               type="button"
+              onClick={() => {
+                navigate(paths.addjob);
+              }}
               className="px-4 py-2 text-sm font-semibold rounded-md bg-primary! text-white hover:bg-primary/90 transition-colors whitespace-nowrap"
             >
               Add New Job
@@ -57,7 +63,8 @@ const Dashboard = () => {
                 {jobs.map((job: Job) => (
                   <tr
                     key={job.id}
-                    className="border-b border-neutrals-20 hover:bg-neutrals-10 transition-colors"
+                    onClick={() => navigate(paths.editJob(job.id))}
+                    className="border-b border-neutrals-20 hover:bg-neutrals-10 transition-colors cursor-pointer "
                   >
                     <td className="px-6 py-4 max-sm:px-3 max-sm:py-3">
                       <Typography variant="text" size="medium">
@@ -82,7 +89,7 @@ const Dashboard = () => {
                     <td className="px-6 py-4 max-sm:px-3 max-sm:py-3">
                       <div className="flex gap-2 flex-nowrap">
                         <button
-                          onClick={() => {}}
+                          onClick={() => navigate(paths.editJob(jobs.id))}
                           className="px-3 py-1 text-sm bg-primary/10 text-primary rounded hover:bg-primary/20 transition-colors whitespace-nowrap"
                         >
                           Manage

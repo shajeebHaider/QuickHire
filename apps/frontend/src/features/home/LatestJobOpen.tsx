@@ -7,26 +7,19 @@ import { useJobs } from '../../api-hooks/useJobs';
 import type { Job } from '../../pages/AllJobs';
 import { useMemo } from 'react';
 
-
-
 const LatestJobOpen = () => {
+  const { data: jobs = [] } = useJobs();
 
-   const { data: jobs = [] } = useJobs();
-    
-   const latestJobs = useMemo(
+  const latestJobs = useMemo(
     () =>
       [...jobs]
-        .sort(
-          (a, b) =>
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        )
+        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
         .slice(0, 8),
     [jobs]
   );
 
-     
   return (
-    <div className="px-31 pt-18 pb-15 flex flex-col gap-8 bg-neutrals-10 relative max-w-360 w-full mx-auto max-lg:px-6 max-md:px-4 max-md:items-center">
+    <div className="px-31 pt-18 pb-15 flex flex-col gap-8 bg-neutrals-10 relative max-w-360 overflow-hidden w-full mx-auto max-lg:px-6 max-md:px-4 max-md:items-center">
       <div className="absolute top-0 left-0 h-20 w-30 bg-white z-20 [clip-path:polygon(0_0,100%_0,0_100%)]" />
       <img
         src={Pattern}

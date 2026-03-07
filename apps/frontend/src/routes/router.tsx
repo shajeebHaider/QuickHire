@@ -9,6 +9,9 @@ import JobDetails from '../pages/JobDetails';
 import Dashboard from '../pages/Dashboard';
 import AdminLayout from '../layouts/admin-layout/AdminLayout';
 import Applications from '../pages/Applications';
+import AddNewJob from '../pages/AddNewJob';
+import EditJob from '../pages/EditJob';
+import EditApplication from '../pages/EditApplication';
 
 export const routes: RouteObject[] = [
   {
@@ -57,7 +60,15 @@ export const routes: RouteObject[] = [
         path: paths.applications,
         element: <Applications />
       },
-      {}
+      {
+        path: paths.addjob,
+        element: <AddNewJob />
+      },
+      {
+        path: paths.editJob(':id'),
+        element: <EditJob />
+      },
+      { path: paths.editApplication(':id'), element: <EditApplication /> }
     ]
   }
 ];

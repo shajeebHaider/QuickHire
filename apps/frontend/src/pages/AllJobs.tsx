@@ -72,7 +72,7 @@ const AllJobs = () => {
           <select
             value={sortBy}
             onChange={e => setSortBy(e.target.value)}
-            className="px-6 py-3 border border-neutrals-20 rounded bg-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all min-w-40"
+            className="px-6 py-3 border border-neutrals-20 rounded bg-white focus:outline-none focus:border-primary! focus:ring-1 focus:ring-primary transition-all min-w-40"
           >
             <option value="trending">Trending</option>
             <option value="location">Sort by Location</option>
