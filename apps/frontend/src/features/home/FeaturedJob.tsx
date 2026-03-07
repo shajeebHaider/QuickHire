@@ -1,141 +1,35 @@
 import SectionHeader from '../../components/home/SectionHeader';
 import FeaturedJobCard from '../../components/home/FeaturedJobCard';
 
-import emailMarketing from '../../assets/logo/Email Marketing.png';
-import product from '../../assets/logo/product.png';
-import pitch from '../../assets/logo/pitch.png';
-import canva from '../../assets/logo/canva.png';
-import designer from '../../assets/logo/designer.png';
-import dropbox from '../../assets/logo/dropbox.png';
-import twitter from '../../assets/logo/twitter.png';
-import brand from '../../assets/logo/brand-strategist.png';
 import ArrowIcon from '../../assets/icons/ArrowIcon';
 import { paths } from '../../routes/paths';
-
-type Category = {
-  variant: 'error' | 'primary' | 'secondary' | 'success' | 'warning';
-  name: string;
-};
-
-type JobType = 'Full-time' | 'Part-time' | 'Contract' | 'Internship' | 'Remote';
-
-const jobs: Array<{
-  logo: string;
-  title: string;
-  company: string;
-  location: string;
-  description: string;
-  type: JobType;
-  categories: Category[];
-  link?: string;
-}> = [
-  {
-    logo: canva,
-    title: 'Software Engineer',
-    company: 'TechCorp',
-    location: 'New York, NY',
-    description: 'Develop and maintain web applications using modern technologies.',
-    type: 'Full-time',
-    categories: [
-      { variant: 'primary', name: 'Design' },
-      { variant: 'success', name: 'Tech' }
-    ],
-    link: '#'
-  },
-  {
-    logo: emailMarketing,
-    title: 'Marketing Manager',
-    company: 'Marketify',
-    location: 'San Francisco, CA',
-    description: 'Manage marketing campaigns and analyze customer data.',
-    type: 'Part-time',
-    categories: [
-      { variant: 'error', name: 'Marketing' },
-      { variant: 'warning', name: 'Strategy' }
-    ],
-    link: '#'
-  },
-  {
-    logo: dropbox,
-    title: 'Data Analyst',
-    company: 'DataWorks',
-    location: 'Chicago, IL',
-    description: 'Analyze data to help drive business decisions.',
-    type: 'Contract',
-    categories: [{ variant: 'success', name: 'Analytics' }],
-    link: '#'
-  },
-  {
-    logo: designer,
-    title: 'Product Designer',
-    company: 'DesignHub',
-    location: 'Remote',
-    description: 'Design user interfaces and experiences for digital products.',
-    type: 'Remote',
-    categories: [{ variant: 'warning', name: 'Design' }],
-    link: '#'
-  },
-  {
-    logo: twitter,
-    title: 'Financial Analyst',
-    company: 'FinancePros',
-    location: 'Boston, MA',
-    description: 'Analyze financial data and prepare reports for stakeholders.',
-    type: 'Full-time',
-    categories: [{ variant: 'error', name: 'Finance' }],
-    link: '#'
-  },
-  {
-    logo: brand,
-    title: 'Financial Analyst',
-    company: 'FinancePros',
-    location: 'Boston, MA',
-    description: 'Analyze financial data and prepare reports for stakeholders.',
-    type: 'Full-time',
-    categories: [
-      { variant: 'error', name: 'Finance' },
-      { variant: 'success', name: 'Accounting' }
-    ],
-    link: '#'
-  },
-  {
-    logo: product,
-    title: ' Manager',
-    company: 'FinancePros',
-    location: 'Boston, MA',
-    description: 'Analyze financial data and prepare reports for stakeholders.',
-    type: 'Full-time',
-    categories: [{ variant: 'success', name: 'Finance' }],
-    link: '#'
-  },
-  {
-    logo: pitch,
-    title: 'Financial Analyst',
-    company: 'FinancePros',
-    location: 'Boston, MA',
-    description: 'Analyze financial data and prepare reports for stakeholders.',
-    type: 'Full-time',
-    categories: [{ variant: 'success', name: 'Finance' }],
-    link: '#'
-  }
-];
+import { useJobs } from '../../api-hooks/useJobs';
+import type { Job } from '../../pages/AllJobs';
+import { useMemo } from 'react';
 
 const FeaturedJob = () => {
+   const { data: jobs= [] } = useJobs();
+
+    const featuredJobs = useMemo(
+    () => jobs.filter((job: Job) => job.isFeatured).slice(0, 8),
+    [jobs]
+  );
+   
   return (
     <div className="px-31 py-18 flex flex-col gap-8 max-w-360 mx-auto max-lg:px-6 max-sm:px-4 max-sm:items-center">
       <SectionHeader title1="Featured" title2="jobs" />
       <div className="grid grid-cols-4 gap-8 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1">
-        {jobs.map((job, index) => (
+        {featuredJobs?.map((job: Job) => (
           <FeaturedJobCard
-            key={index}
-            logo={job.logo}
+            key={job.id}
+            companyLogo={job.companyLogo}
             title={job.title}
-            company={job.company}
+            company={job.companyName}
             location={job.location}
             description={job.description}
-            categories={[...job.categories]}
-            link={job.link}
-            jobType={job.type}
+            category={job.category} 
+            link={paths.jobDetails(job.id)}
+            jobtype={job.jobtype}
           />
         ))}
       </div>

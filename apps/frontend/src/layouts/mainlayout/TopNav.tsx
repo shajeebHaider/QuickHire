@@ -2,6 +2,8 @@ import { useState } from 'react';
 import logo from '../../assets/logo/Frame 3.png';
 import MenuIcon from '../../assets/icons/MenuIcon';
 import SideNav from './SideNav';
+import { Link } from 'react-router-dom';
+import { paths } from '../../routes/paths';
 
 const TopNav = () => {
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
@@ -14,12 +16,12 @@ const TopNav = () => {
           <a href="/">
             <p className="text-2xl leading-normal font-bold">QuickHire</p>
           </a>
-          <a href="#" className="text-sm leading-normal max-sm:hidden">
+          <Link to={paths.jobs} className="text-sm leading-normal max-sm:hidden">
             Find Jobs
-          </a>
-          <a href="#" className="text-sm leading-normal -ml-9 max-sm:hidden">
+          </Link>
+          <Link to='#' className="text-sm leading-normal -ml-9 max-sm:hidden">
             Browse Companies
-          </a>
+          </Link>
         </div>
 
         <div className="flex items-center justify-center gap-4">

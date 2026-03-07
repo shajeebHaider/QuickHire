@@ -5,6 +5,7 @@ import MainLayout from '../layouts/mainlayout/MainLayout';
 import Home from '../pages/Home';
 import { LoadingFallback } from '../components/LoadingFallback';
 import AllJobs from '../pages/AllJobs';
+import JobDetails from '../pages/JobDetails';
 
 export const routes: RouteObject[] = [
   {
@@ -24,6 +25,10 @@ export const routes: RouteObject[] = [
       {
         path: paths.jobs,
         element: <AllJobs />
+      },
+      {
+        path: "/job/:id",
+        element: <JobDetails />,
       },
       {
         path: paths.contact,

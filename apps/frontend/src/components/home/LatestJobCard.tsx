@@ -1,33 +1,31 @@
 import React from 'react';
 import Label from '../base/Label';
 import Typography from '../base/Typography';
+import type { Category } from '../../pages/AllJobs';
 
 interface LatestJobCardProps {
-  logo: string;
+  companyLogo?: string;
   title: string;
-  jobType?: 'Fulltime' | 'Parttime' | 'Contract' | 'Internship' | 'Remote';
+  jobtype?: string;
   company?: string;
   location: string;
-  categories?: {
-    variant: 'primary' | 'secondary' | 'success' | 'warning' | 'error';
-    name: string;
-  }[];
+  category?: Category;
   link?: string;
 }
 
 const LatestJobCard = ({
-  logo,
+    companyLogo,
   title,
-  jobType,
+  jobtype,
   company,
   location,
-  categories,
+  category,
   link
 }: LatestJobCardProps) => {
   return (
     <div className="md:max-w-145 max-w-85.75 bg-neutrals-0 md:p-8 p-4 flex md:flex-row flex-col md:gap-6">
       <div className="sm:w-16 sm:h-16 w-12 h-12 shrink-0">
-        <img src={logo} alt="Logo" />
+        <img src={companyLogo} alt="Logo" />
       </div>
 
       <div>
@@ -42,12 +40,9 @@ const LatestJobCard = ({
         </Typography>
 
         <div className="flex gap-2 flex-wrap">
-          <Label text={jobType || 'Unknown'} variant="success" />
+          <Label text={jobtype || 'Unknown'} {...jobtype==="Full-time" ? { variant: 'warning' } : { variant: 'success' }} />
           <div className="h-8 border-r border-neutrals-20 mx-2" />
-
-          {categories?.map(category => (
-            <Label key={category.name} text={category.name} variant={category.variant} />
-          ))}
+          <Label key={category?.id} text={category?.name ?? ''} {...category?.name==="Engineering" ? { variant: 'primary' } : { variant: 'warning' }} />
         </div>
       </div>
     </div>
