@@ -27,11 +27,14 @@ const CategoryCard = ({ icon, name }: CategoryCardProps) => {
           <Typography
             variant="text"
             size="medium"
-            className="sm:text-lg! flex-1 text-neutrals-60! group-hover:text-white! transition-colors duration-200"
+            className="sm:text-md! text-sm! flex-1 text-neutrals-60! group-hover:text-white! transition-colors duration-200"
           >
             12 jobs available
           </Typography>
-          <a href={paths.jobs} className="text-black group-hover:text-white transition-colors duration-200">
+          <a
+            href={paths.jobs}
+            className="text-black group-hover:text-white transition-colors duration-200"
+          >
             <ArrowIcon />
           </a>
         </div>
