@@ -1,5 +1,5 @@
 {
-  "name": "job-portal",
+  "name": "quickhire",
   "private": true,
   "scripts": {
     "build": "turbo run build",
@@ -9,12 +9,22 @@
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
-    "prettier": "^3.7.4",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.3.3",
+    "prettier": "^3.8.1",
+    "ts-node-dev": "^2.0.0",
     "turbo": "^2.8.12",
     "typescript": "5.9.2"
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "@prisma/client": "^7.4.2",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "prisma": "^7.4.2"
   }
 }

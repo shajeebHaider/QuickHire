@@ -1,0 +1,63 @@
+@theme {
+  --font-body: 'Epilogue', sans-serif;
+  --font-heading: 'ClashDisplay', sans-serif;
+
+  --color-mint: #00ff9d;
+  --color-mint-emphasis: #00e68a;
+  --color-mint-muted: #00b36b;
+  --color-accents-blue: #26a4ff;
+  --color-accents-green: #56cdad;
+  --color-accents-yellow: #ffb836;
+  --color-accents-red: #ff6550;
+  --color-lights-gray: #f8f8fd;
+  --color-black: #202430;
+  --color-white: #ffffff;
+  --color-neutrals-0: #ffffff;
+  --color-neutrals-10: #f8f8fd;
+  --color-neutrals-20: #d6ddeb;
+  --color-neutrals-60: #7c8493;
+  --color-neutrals-80: #6e7681;
+  --color-neutrals-100: #25324b;
+
+  --color-primary: #4640de;
+}
+
+/* ClashDisplay Font Weights */
+
+:root {
+  font-family: var(--font-body);
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
