@@ -1,10 +1,10 @@
-import { prisma } from "../../lib/prisma";
+import { prisma } from '../../lib/prisma';
 
 export const getAllApplications = async () => {
   return prisma.application.findMany({
     include: {
-      job: true,
-    },
+      job: true
+    }
   });
 };
 
@@ -12,12 +12,19 @@ export const getApplicationById = async (id: number) => {
   return prisma.application.findUnique({
     where: { id },
     include: {
-      job: true,
-    },
+      job: true
+    }
   });
 };
 
-export const createApplication = async (data: { applicantName: string; applicantEmail: string; resumeLink: string; jobId: number, coverNote: string, expectedSalary: number}) => {
+export const createApplication = async (data: {
+  applicantName: string;
+  applicantEmail: string;
+  resumeLink: string;
+  jobId: number;
+  coverNote: string;
+  expectedSalary: number;
+}) => {
   const { applicantName, applicantEmail, resumeLink, jobId, coverNote, expectedSalary } = data;
   return prisma.application.create({
     data: {
@@ -26,13 +33,28 @@ export const createApplication = async (data: { applicantName: string; applicant
       resumeLink,
       jobId,
       coverNote,
-      expectedSalary,
+      expectedSalary
     },
     include: {
-      job: true,
-    },
+      job: true
+    }
   });
-}
+};
+
+export const updateApplicationHireStatus = async (id: number, isHired: boolean) => {
+  const existingApplication = await prisma.application.findUnique({ where: { id } });
+  if (!existingApplication) {
+    return null;
+  }
+
+  return prisma.application.update({
+    where: { id },
+    data: { isHired },
+    include: {
+      job: true
+    }
+  });
+};
 
 export const deleteApplication = async (id: number) => {
   return prisma.application.delete({ where: { id } });

@@ -2,11 +2,13 @@ import { useState } from 'react';
 import logo from '../../assets/logo/Frame 3.png';
 import MenuIcon from '../../assets/icons/MenuIcon';
 import SideNav from './SideNav';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { paths } from '../../routes/paths';
 
 const TopNav = () => {
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -19,7 +21,7 @@ const TopNav = () => {
           <Link to={paths.jobs} className="text-sm leading-normal max-sm:hidden">
             Find Jobs
           </Link>
-          <Link to='#' className="text-sm leading-normal -ml-9 max-sm:hidden">
+          <Link to="#" className="text-sm leading-normal -ml-9 max-sm:hidden">
             Browse Companies
           </Link>
         </div>
@@ -32,7 +34,12 @@ const TopNav = () => {
           <button className="flex font-bold cursor-pointer items-center justify-center w-27 h-12.5 text-sm leading-normal px-6 py-3 rounded-sm bg-primary! text-white max-sm:hidden">
             Sign Up
           </button>
-          <button className="flex font-bold cursor-pointer items-center justify-center w-27 h-12.5 text-sm leading-normal px-6 py-3 rounded-sm bg-primary! text-white max-sm:hidden">
+          <button
+            onClick={() => {
+              navigate(paths.dashboard);
+            }}
+            className="flex font-bold cursor-pointer items-center justify-center w-27 h-12.5 text-sm leading-normal px-6 py-3 rounded-sm bg-primary! text-white max-sm:hidden"
+          >
             Dashboard
           </button>
 

@@ -27,3 +27,28 @@ export const useSubmitApplication = () => {
     onSuccess: () => qc.invalidateQueries({ queryKey: ['applications'] })
   });
 };
+
+export const useUpdateApplicationHireStatus = () => {
+  const qc = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ id, isHired }: { id: number | string; isHired: boolean }) =>
+      applicationsApi.updateHireStatus(id, isHired),
+    onSuccess: (_, variables) => {
+      qc.invalidateQueries({ queryKey: ['applications'] });
+      qc.invalidateQueries({ queryKey: ['application', Number(variables.id)] });
+    }
+  });
+};
+
+export const useDeleteApplication = () => {
+  const qc = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id: number | string) => applicationsApi.deleteById(id),
+    onSuccess: (_, id) => {
+      qc.invalidateQueries({ queryKey: ['applications'] });
+      qc.removeQueries({ queryKey: ['application', Number(id)] });
+    }
+  });
+};

@@ -1,7 +1,8 @@
 import Typography from '../components/base/Typography';
-import { useAppications } from '../api-hooks/useApplications';
+import { useAppications, useDeleteApplication } from '../api-hooks/useApplications';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../routes/paths';
+import type { Job } from './AllJobs';
 
 interface Application {
   id: number;
@@ -11,6 +12,7 @@ interface Application {
   resumeLink: string;
   expectedSalary: number;
   coverNote: string;
+  job: Job;
   isHired: boolean;
   createdAt: string;
   updatedAt: string;
@@ -18,8 +20,16 @@ interface Application {
 
 const Applications = () => {
   const { data: applications = [] } = useAppications();
+  const { mutate: deleteApplication, isPending: isDeleting } = useDeleteApplication();
 
   const navigate = useNavigate();
+
+  const handleDeleteApplication = (id: number) => {
+    const isConfirmed = window.confirm('Are you sure you want to delete this application?');
+    if (!isConfirmed) return;
+
+    deleteApplication(id);
+  };
 
   return (
     <div className="min-h-screen flex flex-col w-full">
@@ -39,7 +49,7 @@ const Applications = () => {
           </div>
 
           <div className="bg-white rounded border border-neutrals-20 overflow-x-auto">
-            <table className="w-full min-w-[1000px]">
+            <table className="w-full min-w-250">
               <thead className="bg-neutrals-10 border-b border-neutrals-20">
                 <tr>
                   <th className="px-6 py-4 text-left max-sm:px-3 max-sm:py-3">
@@ -54,17 +64,27 @@ const Applications = () => {
                   </th>
                   <th className="px-6 py-4 text-left max-sm:px-3 max-sm:py-3">
                     <Typography variant="text" size="small" className="font-semibold">
-                      Resume Link
-                    </Typography>
-                  </th>
-                  <th className="px-6 py-4 text-left max-sm:px-3 max-sm:py-3">
-                    <Typography variant="text" size="small" className="font-semibold">
                       Expected Salary
                     </Typography>
                   </th>
                   <th className="px-6 py-4 text-left max-sm:px-3 max-sm:py-3">
                     <Typography variant="text" size="small" className="font-semibold">
+                      Job Title
+                    </Typography>
+                  </th>
+                  <th className="px-6 py-4 text-left max-sm:px-3 max-sm:py-3">
+                    <Typography variant="text" size="small" className="font-semibold">
+                      Company Name
+                    </Typography>
+                  </th>
+                  <th className="px-6 py-4 text-left max-sm:px-3 max-sm:py-3">
+                    <Typography variant="text" size="small" className="font-semibold">
                       Hired
+                    </Typography>
+                  </th>
+                  <th className="px-6 py-4 text-left max-sm:px-3 max-sm:py-3">
+                    <Typography variant="text" size="small" className="font-semibold">
+                      Resume Link
                     </Typography>
                   </th>
                   <th className="px-6 py-4 text-left max-sm:px-3 max-sm:py-3">
@@ -94,20 +114,19 @@ const Applications = () => {
                       </Typography>
                     </td>
                     <td className="px-6 py-4 max-sm:px-3 max-sm:py-3">
-                      <a
-                        href={app.resumeLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-primary hover:underline"
-                      >
-                        <Typography variant="text" size="medium">
-                          View Resume
-                        </Typography>
-                      </a>
+                      <Typography variant="text" size="medium" className="text-neutrals-60!">
+                        ${app.expectedSalary.toLocaleString()}
+                      </Typography>
+                    </td>
+
+                    <td className="px-6 py-4 max-sm:px-3 max-sm:py-3">
+                      <Typography variant="text" size="medium" className="text-neutrals-60!">
+                        {app.job.title}
+                      </Typography>
                     </td>
                     <td className="px-6 py-4 max-sm:px-3 max-sm:py-3">
                       <Typography variant="text" size="medium" className="text-neutrals-60!">
-                        ${app.expectedSalary.toLocaleString()}
+                        {app.job.companyName}
                       </Typography>
                     </td>
                     <td className="px-6 py-4 max-sm:px-3 max-sm:py-3">
@@ -124,16 +143,39 @@ const Applications = () => {
                       </span>
                     </td>
                     <td className="px-6 py-4 max-sm:px-3 max-sm:py-3">
+                      <a
+                        onClick={e => e.stopPropagation()}
+                        href={app.resumeLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline"
+                      >
+                        <Typography variant="text" size="medium">
+                          View Resume
+                        </Typography>
+                      </a>
+                    </td>
+                    <td className="px-6 py-4 max-sm:px-3 max-sm:py-3">
                       <div className="flex gap-2 flex-nowrap">
                         <button
-                          onClick={() => {
+                          type="button"
+                          onClick={e => {
+                            e.stopPropagation();
                             navigate(paths.editApplication(app.id));
                           }}
                           className="px-3 py-1 text-sm bg-primary/10 text-primary rounded hover:bg-primary/20 transition-colors whitespace-nowrap"
                         >
                           Manage
                         </button>
-                        <button className="px-3 py-1 text-sm bg-accents-red/10 text-accents-red rounded hover:bg-accents-red/20 transition-colors whitespace-nowrap">
+                        <button
+                          type="button"
+                          disabled={isDeleting}
+                          onClick={e => {
+                            e.stopPropagation();
+                            handleDeleteApplication(app.id);
+                          }}
+                          className="px-3 py-1 text-sm bg-accents-red/10 text-accents-red rounded hover:bg-accents-red/20 transition-colors whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed"
+                        >
                           Delete
                         </button>
                       </div>

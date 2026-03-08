@@ -1,4 +1,3 @@
-import React from 'react';
 import SectionHeader from '../../components/home/SectionHeader';
 import CategoryCard from '../../components/home/CategoryCard';
 import ArrowIcon from '../../assets/icons/ArrowIcon';
@@ -18,11 +17,7 @@ const Category = () => {
 
       <div className="grid grid-cols-4 gap-8 max-xl:grid-cols-3 max-lg:grid-cols-3 max-sm:grid-cols-1">
         {categories.map((category: Category) => (
-          <CategoryCard
-            key={category.id}
-            icon={category.icon}
-            name={category.name}
-          />
+          <CategoryCard key={category.id} icon={category.icon} name={category.name} />
         ))}
       </div>
 

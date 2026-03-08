@@ -10,12 +10,14 @@ const TopNav = (props: TopNavProps) => {
   return (
     <nav className="bg-white border-b border-neutrals-20 px-8 py-4 max-lg:px-6 max-sm:px-4">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <img src={logo} alt="QuickHire Logo" className="w-8 h-8" />
-          <Typography variant="heading" size="small" className="max-sm:hidden">
-            QuickHire
-          </Typography>
-        </div>
+        <a href="/">
+          <div className="flex items-center gap-3">
+            <img src={logo} alt="QuickHire Logo" className="w-8 h-8" />
+            <Typography variant="heading" size="small" className="max-sm:hidden">
+              QuickHire
+            </Typography>
+          </div>
+        </a>
 
         <div className="flex items-center gap-4">
           <div className="relative max-md:hidden">

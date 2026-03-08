@@ -1,11 +1,7 @@
-import { Request, Response, NextFunction } from "express";
-import * as applicationService from "./application.service";
+import { Request, Response, NextFunction } from 'express';
+import * as applicationService from './application.service';
 
-export const getAllApplications = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const getAllApplications = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const applications = await applicationService.getAllApplications();
     res.json(applications);
@@ -14,20 +10,17 @@ export const getAllApplications = async (
   }
 };
 
-export const getApplicationById = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const getApplicationById = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const id = Number.parseInt(req.params.id, 10);
+    const rawId = req.params.id;
+    const id = Number.parseInt(rawId ?? '', 10);
     if (Number.isNaN(id)) {
-      return res.status(400).json({ message: "Invalid application id" });
+      return res.status(400).json({ message: 'Invalid application id' });
     }
 
     const application = await applicationService.getApplicationById(id);
     if (!application) {
-      return res.status(404).json({ message: "Application not found" });
+      return res.status(404).json({ message: 'Application not found' });
     }
 
     res.json(application);
@@ -36,20 +29,10 @@ export const getApplicationById = async (
   }
 };
 
-export const createApplication = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const createApplication = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const {
-      applicantName,
-      applicantEmail,
-      resumeLink,
-      jobId,
-      coverNote,
-      expectedSalary,
-    } = req.body;
+    const { applicantName, applicantEmail, resumeLink, jobId, coverNote, expectedSalary } =
+      req.body;
 
     const newApplication = await applicationService.createApplication({
       applicantName,
@@ -57,7 +40,7 @@ export const createApplication = async (
       resumeLink,
       jobId: Number(jobId),
       coverNote,
-      expectedSalary: Number(expectedSalary),
+      expectedSalary: Number(expectedSalary)
     });
 
     res.status(201).json(newApplication);
@@ -66,15 +49,40 @@ export const createApplication = async (
   }
 };
 
-export const deleteApplication = async (
+export const updateApplicationHireStatus = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const id = Number.parseInt(req.params.id, 10);
+    const rawId = req.params.id;
+    const id = Number.parseInt(rawId ?? '', 10);
     if (Number.isNaN(id)) {
-      return res.status(400).json({ message: "Invalid application id" });
+      return res.status(400).json({ message: 'Invalid application id' });
+    }
+
+    const { isHired } = req.body;
+    if (typeof isHired !== 'boolean') {
+      return res.status(400).json({ message: 'isHired must be a boolean' });
+    }
+
+    const updatedApplication = await applicationService.updateApplicationHireStatus(id, isHired);
+    if (!updatedApplication) {
+      return res.status(404).json({ message: 'Application not found' });
+    }
+
+    res.json(updatedApplication);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteApplication = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const rawId = req.params.id;
+    const id = Number.parseInt(rawId ?? '', 10);
+    if (Number.isNaN(id)) {
+      return res.status(400).json({ message: 'Invalid application id' });
     }
 
     await applicationService.deleteApplication(id);
@@ -83,5 +91,3 @@ export const deleteApplication = async (
     next(error);
   }
 };
-
-

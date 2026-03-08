@@ -4,17 +4,19 @@ import Typography from '../components/base/Typography';
 import { useState } from 'react';
 import JobOverview from '../features/job-details/JobOverview';
 import JobMain from '../features/job-details/JobMain';
+import { useSubmitApplication } from '../api-hooks/useApplications';
 
 const JobDetails = () => {
   const { id } = useParams();
   const { data: job, isLoading, isError } = useJob(id);
+  const { mutateAsync: submitApplication, isPending: isSubmitting } = useSubmitApplication();
 
   const [formData, setFormData] = useState({
     applicantName: '',
     applicantEmail: '',
     resumeLink: '',
     coverNote: '',
-    expectedSalary: '',
+    expectedSalary: ''
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -22,15 +24,36 @@ const JobDetails = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Application submitted:', { ...formData, jobId: job?.id });
+
+    if (!job?.id) return;
+
+    await submitApplication({
+      applicantName: formData.applicantName,
+      applicantEmail: formData.applicantEmail,
+      resumeLink: formData.resumeLink,
+      coverNote: formData.coverNote,
+      expectedSalary: Number(formData.expectedSalary),
+      jobId: job.id
+    });
+
+    alert('Applied successfully');
+    setFormData({
+      applicantName: '',
+      applicantEmail: '',
+      resumeLink: '',
+      coverNote: '',
+      expectedSalary: ''
+    });
   };
 
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <Typography variant="text" size="large">Loading job details...</Typography>
+        <Typography variant="text" size="large">
+          Loading job details...
+        </Typography>
       </div>
     );
   }
@@ -46,10 +69,9 @@ const JobDetails = () => {
   }
 
   return (
-    <div className="min-h-screen max-w-[1440px] mx-auto bg-neutrals-10 px-31 py-18 max-lg:px-6 max-sm:px-4">
+    <div className="min-h-screen max-w-360 mx-auto bg-neutrals-10 px-31 py-18 max-lg:px-6 max-sm:px-4">
       <div className="max-w-360 mx-auto grid grid-cols-3 gap-8 max-lg:grid-cols-1">
-
-        <JobMain job={job} />        
+        <JobMain job={job} />
         <div className="col-span-1">
           <JobOverview job={job} />
           <div className="bg-white p-8">
@@ -59,7 +81,10 @@ const JobDetails = () => {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label htmlFor="applicantName" className="block text-sm font-semibold text-neutrals-100 mb-2">
+                <label
+                  htmlFor="applicantName"
+                  className="block text-sm font-semibold text-neutrals-100 mb-2"
+                >
                   Full Name *
                 </label>
                 <input
@@ -75,7 +100,10 @@ const JobDetails = () => {
               </div>
 
               <div>
-                <label htmlFor="applicantEmail" className="block text-sm font-semibold text-neutrals-100 mb-2">
+                <label
+                  htmlFor="applicantEmail"
+                  className="block text-sm font-semibold text-neutrals-100 mb-2"
+                >
                   Email Address *
                 </label>
                 <input
@@ -91,7 +119,10 @@ const JobDetails = () => {
               </div>
 
               <div>
-                <label htmlFor="resumeLink" className="block text-sm font-semibold text-neutrals-100 mb-2">
+                <label
+                  htmlFor="resumeLink"
+                  className="block text-sm font-semibold text-neutrals-100 mb-2"
+                >
                   Resume Link *
                 </label>
                 <input
@@ -107,7 +138,10 @@ const JobDetails = () => {
               </div>
 
               <div>
-                <label htmlFor="expectedSalary" className="block text-sm font-semibold text-neutrals-100 mb-2">
+                <label
+                  htmlFor="expectedSalary"
+                  className="block text-sm font-semibold text-neutrals-100 mb-2"
+                >
                   Expected Salary ($) *
                 </label>
                 <input
@@ -123,7 +157,10 @@ const JobDetails = () => {
               </div>
 
               <div>
-                <label htmlFor="coverNote" className="block text-sm font-semibold text-neutrals-100 mb-2">
+                <label
+                  htmlFor="coverNote"
+                  className="block text-sm font-semibold text-neutrals-100 mb-2"
+                >
                   Cover Note *
                 </label>
                 <textarea
@@ -140,13 +177,14 @@ const JobDetails = () => {
 
               <button
                 type="submit"
-                className="bg-primary! cursor-pointer w-full text-white font-semibold px-3 py-3 rounded hover:bg-primary-dark transition-colors duration-200"
+                disabled={isSubmitting}
+                className="bg-primary! cursor-pointer w-full text-white font-semibold px-3 py-3 rounded hover:bg-primary-dark transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Submit Application
+                {isSubmitting ? 'Submitting...' : 'Submit Application'}
               </button>
               <button
                 type="button"
-                  onClick={() => window.history.back()}
+                onClick={() => window.history.back()}
                 className="bg-white! w-full cursor-pointer pointer- text-black border border-primary font-semibold px-3 py-3 rounded hover:bg-primary-dark transition-colors duration-200"
               >
                 Go back

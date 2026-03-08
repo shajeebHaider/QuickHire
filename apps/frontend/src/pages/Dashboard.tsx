@@ -92,10 +92,7 @@ const Dashboard = () => {
                           onClick={() => navigate(paths.editJob(jobs.id))}
                           className="px-3 py-1 text-sm bg-primary/10 text-primary rounded hover:bg-primary/20 transition-colors whitespace-nowrap"
                         >
-                          Manage
-                        </button>
-                        <button className="px-3 py-1 text-sm bg-accents-red/10 text-accents-red rounded hover:bg-accents-red/20 transition-colors whitespace-nowrap">
-                          Delete
+                          View details
                         </button>
                       </div>
                     </td>
