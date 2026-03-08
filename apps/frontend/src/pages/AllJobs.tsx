@@ -3,6 +3,7 @@ import Typography from '../components/base/Typography';
 import FeaturedJobCard from '../components/home/FeaturedJobCard';
 import { useJobs } from '../api-hooks/useJobs';
 import { paths } from '../routes/paths';
+import { useSearchParams } from 'react-router-dom';
 
 export type Category = {
   id: number;
@@ -24,9 +25,12 @@ export interface Job {
 }
 
 const AllJobs = () => {
+  const [searchParams] = useSearchParams();
   const { data: jobs = [] } = useJobs();
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(() => searchParams.get('query') ?? '');
   const [sortBy, setSortBy] = useState('trending');
+
+  const locationFilter = (searchParams.get('location') ?? '').trim().toLowerCase();
 
   const filteredAndSortedJobs = useMemo(() => {
     let filtered = jobs.filter(
@@ -37,6 +41,10 @@ const AllJobs = () => {
         job.description.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+    if (locationFilter) {
+      filtered = filtered.filter((job: Job) => job.location.toLowerCase().includes(locationFilter));
+    }
+
     if (sortBy === 'location') {
       filtered = filtered.sort((a: Job, b: Job) => a.location.localeCompare(b.location));
     } else if (sortBy === 'title') {
@@ -46,7 +54,7 @@ const AllJobs = () => {
     }
 
     return filtered;
-  }, [jobs, searchQuery, sortBy]);
+  }, [jobs, searchQuery, sortBy, locationFilter]);
 
   return (
     <div className="min-h-screen px-31 py-18 flex flex-col gap-8 max-w-360 mx-auto max-lg:px-6 max-sm:px-4 max-sm:items-center">
