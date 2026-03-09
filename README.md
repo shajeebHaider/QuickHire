@@ -1,159 +1,243 @@
-# Turborepo starter
+# QuickHire
 
-This Turborepo starter is maintained by the Turborepo core team.
+QuickHire is a full-stack job board application built with a Turborepo monorepo.
 
-## Using this example
+- **Frontend:** React + Vite + React Query
+- **Backend:** Express + Prisma + PostgreSQL
+- **Media Uploads:** Cloudinary (used for upload API and seed logos)
 
-Run the following command:
+---
 
-```sh
-npx create-turbo@latest
+## 1) Prerequisites (new PC setup)
+
+Install these first:
+
+- **Git**
+- **Node.js** `>= 18` (recommended: Node 20 LTS)
+- **pnpm** `9.x`
+- **PostgreSQL** (local or cloud, e.g. Neon/Supabase/Railway)
+
+### Install pnpm via Corepack
+
+```bash
+corepack enable
+corepack prepare pnpm@9.0.0 --activate
+pnpm -v
 ```
 
-## What's inside?
+---
 
-This Turborepo includes the following packages/apps:
+## 2) Clone & install dependencies
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo build
+```bash
+git clone https://github.com/shajeebHaider/QuickHire.git
+cd QuickHire
+pnpm install
 ```
 
-Without global `turbo`, use your package manager:
+---
 
-```sh
-cd my-turborepo
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+## 3) Environment variables
+
+You need two env files:
+
+- `apps/backend/.env`
+- `apps/frontend/.env`
+
+### `apps/backend/.env`
+
+```env
+# Server
+PORT=3001
+FRONTEND_URL=http://localhost:5173
+NODE_ENV=development
+JWT_SECRET=your-super-secret-key
+
+# Database (PostgreSQL)
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/quickhire?schema=public
+
+# Cloudinary
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+### `apps/frontend/.env`
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo build --filter=docs
+```env
+VITE_API_URL=http://localhost:3001/api
+# Optional
+VITE_BASENAME=/
 ```
 
-Without global `turbo`:
+---
 
-```sh
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+## 4) Cloudinary setup
+
+1. Create/sign in to your Cloudinary account.
+2. Open the dashboard.
+3. Copy:
+   - `Cloud name`
+   - `API Key`
+   - `API Secret`
+4. Paste them into `apps/backend/.env`.
+
+> Cloudinary is required for:
+>
+> - Upload endpoint (`POST /api/upload`)
+> - Seed script logo uploads
+
+---
+
+## 5) Database setup (Prisma)
+
+From repo root:
+
+```bash
+cd apps/backend
+pnpm db:push
+pnpm exec prisma db seed
+cd ../..
 ```
 
-### Develop
+Notes:
 
-To develop all apps and packages, run the following command:
+- `db:push` creates DB tables from `schema.prisma`.
+- Seed uploads logos to Cloudinary and inserts categories/jobs/applications.
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+Optional DB tools:
 
-```sh
-cd my-turborepo
-turbo dev
+```bash
+cd apps/backend
+pnpm db:studio
 ```
 
-Without global `turbo`, use your package manager:
+---
 
-```sh
-cd my-turborepo
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+## 6) Run the project (frontend + backend)
+
+From root, run everything:
+
+```bash
+pnpm dev
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+Expected local URLs:
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+- Frontend (Vite default): `http://localhost:5173`
+- Backend API: `http://localhost:3001/api`
+- Health check: `http://localhost:3001/health`
 
-```sh
-turbo dev --filter=web
+If frontend runs on `5173`, set backend env as:
+
+```env
+FRONTEND_URL=http://localhost:5173
 ```
 
-Without global `turbo`:
+---
 
-```sh
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+## 7) Useful commands
+
+### Monorepo (root)
+
+```bash
+pnpm dev
+pnpm build
+pnpm lint
+pnpm format
 ```
 
-### Remote Caching
+### Backend only
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
+```bash
+pnpm --filter @quickhire/backend dev
+pnpm --filter @quickhire/backend build
+pnpm --filter @quickhire/backend start
 ```
 
-Without global `turbo`, use your package manager:
+### Frontend only
 
-```sh
-cd my-turborepo
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+```bash
+pnpm --filter frontend dev
+pnpm --filter frontend build
+pnpm --filter frontend preview
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+---
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+## 8) API quick reference
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+Base URL: `http://localhost:3001/api`
 
-```sh
-turbo link
+### Jobs
+
+- `GET /jobs`
+- `GET /job/:id`
+- `POST /jobs`
+- `PATCH /job/:id`
+- `DELETE /job/:id`
+
+### Applications
+
+- `GET /applications`
+- `GET /applications/:id`
+- `POST /applications`
+- `PATCH /applications/:id/hire-status`
+- `DELETE /applications/:id`
+
+### Categories
+
+- `GET /categories`
+- `GET /category/:id`
+- `POST /categories`
+- `PUT /category/:id`
+- `DELETE /category/:id`
+
+### Upload
+
+- `POST /upload`
+  - `multipart/form-data`
+  - field name: `image`
+
+---
+
+## 9) Troubleshooting
+
+### Prisma cannot connect to DB
+
+- Check `DATABASE_URL` format.
+- Verify PostgreSQL is running and accessible.
+- Re-run:
+
+```bash
+cd apps/backend
+pnpm db:push
 ```
 
-Without global `turbo`:
+### CORS issues in browser
 
-```sh
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
+- Ensure `FRONTEND_URL` in backend `.env` matches frontend URL.
+- Default expected frontend URL is `http://localhost:3000`.
 
-## Useful Links
+### Upload fails (Cloudinary)
 
-Learn more about the power of Turborepo:
+- Confirm all 3 Cloudinary env vars are present.
+- Restart backend after changing `.env`.
 
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+### Seed fails
+
+- Ensure Cloudinary creds are valid (seed uploads logos).
+- Ensure DB is reachable and empty enough for seed delete/create flow.
+
+---
+
+## 10) Fresh setup checklist (quick)
+
+- [ ] Install Node, pnpm, PostgreSQL
+- [ ] Clone repo and run `pnpm install`
+- [ ] Create `apps/backend/.env`
+- [ ] Create `apps/frontend/.env`
+- [ ] Set Cloudinary credentials
+- [ ] Run `pnpm db:push` and `pnpm prisma db seed` inside backend
+- [ ] Run `pnpm dev` from root
+- [ ] Open frontend in browser
